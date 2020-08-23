@@ -1,0 +1,109 @@
+[
+    {
+        "id": "b2773ee5.7d03",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5c603e1a.aa346",
+        "type": "mqtt in",
+        "z": "b2773ee5.7d03",
+        "name": "",
+        "topic": "espin",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "1e218292.d0b315",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "f4db4ed9.3fdbd",
+                "978fc87e.41dff8",
+                "82d57515.68b2b8"
+            ]
+        ]
+    },
+    {
+        "id": "f4db4ed9.3fdbd",
+        "type": "http request",
+        "z": "b2773ee5.7d03",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "192.168.1.102:4000/tracker",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 430,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "978fc87e.41dff8",
+        "type": "debug",
+        "z": "b2773ee5.7d03",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 640,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "82d57515.68b2b8",
+        "type": "influxdb out",
+        "z": "b2773ee5.7d03",
+        "influxdb": "27cf5338.b1865c",
+        "name": "",
+        "measurement": "gyro",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 540,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "1e218292.d0b315",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mqttbroker",
+        "broker": "192.168.1.102",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "27cf5338.b1865c",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "192.168.1.102",
+        "port": "8086",
+        "protocol": "http",
+        "database": "projeDb",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    }
+]
